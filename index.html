@@ -18,23 +18,50 @@
 
 
     <script>
-      setTimeout(function() {
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.matchMedia("(min-width: 769px)").matches) {
+    setTimeout(function () {
+      const intro = document.getElementById('introduction');
+      const mainContent = document.getElementById('main-content');
+
+      if (intro && mainContent) { 
+        intro.style.transition = 'opacity 0.1s ease-out';
+        intro.style.opacity = '0';
+
+        setTimeout(function () {
+          intro.style.display = 'none';
+          mainContent.style.display = 'block'; 
+
+          setTimeout(function () {
+            mainContent.style.transition = 'opacity 0.1s ease-in';
+            mainContent.style.opacity = '1'; 
+            if (typeof $ !== "undefined" && $('.your-class').slick) {
+              $('.your-class').slick('setPosition'); 
+            }
+          }, 5);
+        }, 80);
+      }
+    }, 4300);
+  } else {
     const intro = document.getElementById('introduction');
     const mainContent = document.getElementById('main-content');
-        intro.style.transition = 'opacity 0.1s ease-out';
-        intro.style.opacity = '0'; 
-        setTimeout(function() {
-          intro.style.display = 'none';
-          mainContent.style.display = 'block';
-        setTimeout(function() {
-          mainContent.style.transition = 'opacity 0.1s ease-in';
-          mainContent.style.opacity = '1';
-          $('.your-class').slick('setPosition');   
-          }, 5); 
-        }, 80);  
-      }, 4300); 
+    if (intro && mainContent) {
+      intro.style.display = 'none'; 
+      mainContent.style.display = 'block'; 
+      mainContent.style.opacity = '1'; 
 
-    </script>
+      if (typeof $ !== "undefined" && $('.your-class').slick) {
+        $('.your-class').slick('setPosition'); 
+      }
+    }
+  }
+});
+
+
+</script>
+
+
+
 
 
 
